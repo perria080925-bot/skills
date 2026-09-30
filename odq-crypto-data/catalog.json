@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "slug": "odq-crypto-data",
+  "provider": "one-dollar-quest",
+  "providerUrl": "https://github.com/perria080925-bot/one-dollar-quest",
+  "logo": null,
+  "demo": {
+    "title": "odq-crypto-data.sh",
+    "language": "bash",
+    "code": "BASE=https://x402.bankr.bot/0xf436ca41bd0a236338bef57adeb4976677513010\n\n# Momentum snapshot for any coin ($0.0005)\ncurl -s \"$BASE/market-signal?coin=bitcoin\" | python3 -m json.tool\n\n# Perp market regime for BTC/ETH/SOL ($0.003)\ncurl -s \"$BASE/crypto-sentinel?symbol=BTC\" | python3 -m json.tool\n\n# Funding APR heatmap, 15 Binance perps ($0.004)\ncurl -s \"$BASE/funding-heatmap\" | python3 -m json.tool\n\n# DEX pair scan for any EVM token ($0.005)\ncurl -s \"$BASE/pair-scan?token=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\" | python3 -m json.tool\n\n# Rug-safety screen 0-100 with auditable flags ($0.01)\ncurl -s \"$BASE/token-safety?token=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\" | python3 -m json.tool\n\n# First call returns HTTP 402 + payment requirements (x402 v2, USDC on Base).\n# Sign EIP-3009 and retry with the X-PAYMENT header, or use any x402 SDK."
+  },
+  "setup": [
+    "No install required — every endpoint is plain HTTP behind x402 (protocol v2)",
+    "Fund a Base wallet with USDC (prices from $0.0005/req; no gas needed — facilitator settles)",
+    "Or use an x402-aware runtime (Bankr terminal, x402-axios, x402 SDKs) that signs and pays automatically",
+    "Worked manual-payment example in references/endpoints.md; responses embed sources + methodology + disclaimer"
+  ],
+  "install": {
+    "type": "bankr",
+    "repoPath": "odq-crypto-data",
+    "command": "install the odq-crypto-data skill from https://github.com/BankrBot/skills/tree/main/odq-crypto-data"
+  }
+}
