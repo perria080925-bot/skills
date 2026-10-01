@@ -1,12 +1,12 @@
 ---
 name: odq-crypto-data
-description: "Query 5 pay-per-request crypto-data APIs over x402 (market momentum signals, DEX pair scans, token rug-safety scores, funding-rate heatmap, perp market regime). USDC settlement on Base. Use when the user needs quantitative market data, token safety screening, or funding/crowding indicators without a subscription or API key."
+description: "Query 6 pay-per-request crypto-data APIs over x402 (market momentum signals, DEX pair scans, token rug-safety scores, funding-rate heatmap, perp market regime, EVM wallet snapshots). USDC settlement on Base. Use when the user needs quantitative market data, token safety screening, or funding/crowding indicators without a subscription or API key."
 metadata: { "openclaw": { "emoji": "📊", "requires": { "bins": ["curl"] } } }
 ---
 
 # ODQ Crypto Data (x402, pay-per-request on Base)
 
-Five independent HTTP endpoints using the x402 protocol (HTTP 402 paywall,
+Six independent HTTP endpoints using the x402 protocol (HTTP 402 paywall,
 USDC settlement on Base). Pay only for what you call; no subscription, no API
 key, your wallet is the subscription. Every response includes its data sources,
 methodology and a not-financial-advice disclaimer.
@@ -29,6 +29,7 @@ BASE = https://x402.bankr.bot/0xf436ca41bd0a236338bef57adeb4976677513010
 | `funding-heatmap` | $0.004 | Funding APR across 15 Binance USD-M perps, ranked by |APR| with crowded_long/crowded_short flags |
 | `pair-scan` | $0.005 | Any EVM token: total liquidity, 24h volume, churn, best pair price/FDV/volatility, up to 6 secondary pairs (DexScreener) |
 | `token-safety` | $0.01 | Heuristic rug/risk screen 0-100 with auditable flags: pair age, liquidity depth, volume churn, volatility, buy/sell imbalance |
+| `wallet-watch?address=<0x...>&chain=eth|base|bsc` | 0.0002 | Wallet snapshot: live native balance from public RPC, ENS name + token flags, last 5 transactions (Blockscout) |
 
 Full input/output schemas: [references/endpoints.md](references/endpoints.md).
 

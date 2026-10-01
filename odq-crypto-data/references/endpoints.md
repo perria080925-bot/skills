@@ -81,3 +81,16 @@ is NOT a security audit. Interpretation guide:
 | Screen a 50-token watchlist | 100 | $1.50 |
 
 Always confirm batch costs with the user before running multi-token scans.
+
+## wallet-watch ($0.0002/req)
+
+```
+GET {BASE}/wallet-watch?address=0x{40hex}&chain=eth|base|bsc&txs=false (optional)
+```
+
+Returns: live native balance (wei + whole units) from a public RPC node, Blockscout wallet flags (ENS domain, has_tokens, has_token_transfers, native exchange rate), and the 5 most recent transactions touching the address (hash, from, to, value, status, timestamp, method). `txs=false` skips the transactions fetch.
+
+Example:
+```bash
+curl -s "$BASE/wallet-watch?address=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045&chain=eth"
+```
